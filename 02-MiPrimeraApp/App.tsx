@@ -6,7 +6,7 @@ import { BoxObjectModelScreen } from './src/screens/BoxObjectModelScreen';
 
 export const App = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ height: 400 }}>
       {/* <HolaMundoScreen />
       <ContadorScreen /> */}
       <BoxObjectModelScreen />
