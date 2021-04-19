@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 export const FlexScreen = () => {
      return (
@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
      container: {
           flex: 1,
           backgroundColor: '#28C4D9',
-          justifyContent: 'space-evenly'
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end'
      },
      caja1: {
           borderWidth: 2,
