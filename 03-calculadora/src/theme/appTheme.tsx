@@ -13,12 +13,12 @@ export const styles = StyleSheet.create({
     },
     resultado: {
          color: 'white',
-         fontSize: 60,
+         fontSize: 40,
          textAlign: 'right'
     },
     resultadoPequeno: {
          color: 'rgba(255, 255, 255, 0.5)',
-         fontSize: 30,
+         fontSize: 20,
          textAlign: 'right'         
     },
     fila: {
