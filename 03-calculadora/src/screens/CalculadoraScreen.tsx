@@ -107,7 +107,7 @@ export const CalculadoraScreen = () => {
      return (
           <View style={ styles.calculadoraContainer }>
                {
-                    ( numeroAnterior === '0' ) && ( 
+                    ( numeroAnterior !== '0' ) && ( 
                          <Text style={ styles.resultadoPequeno }>{ numeroAnterior }</Text> 
                     )
                }
