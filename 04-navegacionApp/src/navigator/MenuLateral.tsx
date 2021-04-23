@@ -5,8 +5,21 @@ import { SettingsScreen } from '../screens/SettingsScreen';
 import { StackNavigator } from './StackNavigator';
 import { Image, Text, useWindowDimensions, View, TouchableOpacity  } from 'react-native';
 import { styles } from '../theme/appTheme';
+// import { createStackNavigator } from '@react-navigation/stack';
 
 const Drawer = createDrawerNavigator();
+
+// const Stack = createStackNavigator();
+// const SettingsStackScreen = () => {
+//      return (
+//           <Stack.Navigator>
+//                <Stack.Screen
+//                     name="SettingsScreen"
+//                     component={ SettingsScreen }
+//                />
+//           </Stack.Navigator>
+//      )
+// }
 
 export const MenuLateral = () => {
 
