@@ -3,8 +3,9 @@ import React from 'react';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentOptions, DrawerContentScrollView } from '@react-navigation/drawer';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { StackNavigator } from './StackNavigator';
-import { Image, Text, useWindowDimensions, View } from 'react-native';
-import { styles } from '../theme/appTheme'
+import { Image, Text, useWindowDimensions, View, TouchableOpacity  } from 'react-native';
+import { styles } from '../theme/appTheme';
+
 const Drawer = createDrawerNavigator();
 
 export const MenuLateral = () => {
@@ -22,10 +23,12 @@ export const MenuLateral = () => {
      );
 }
 
-const MenuInterno = ( props: DrawerContentComponentProps<DrawerContentOptions> ) => {
+const MenuInterno = ( { navigation }: DrawerContentComponentProps<DrawerContentOptions> ) => {
      
      return (
           <DrawerContentScrollView>
+
+               {/* Parte del avatar */}
                <View style={ styles.avatarContainer }>
                     <Image
                          source={{
@@ -34,6 +37,26 @@ const MenuInterno = ( props: DrawerContentComponentProps<DrawerContentOptions> )
                          style={ styles.avatar }
                     />
                </View>
+
+               {/* Opciones de menú */}
+               <View style={ styles.menuContainer }>
+
+                    <TouchableOpacity 
+                         style={ styles.menuBoton }
+                         onPress={ () => navigation.navigate('StackNavigator')}
+                    >
+                         <Text style={ styles.menuTexto }>Navegacion</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                         style={ styles.menuBoton }
+                         onPress={ () => navigation.navigate('SettingsScreen')}
+                    >
+                         <Text style={ styles.menuTexto }>Ajustes</Text>
+                    </TouchableOpacity>
+
+               </View>          
+
           </DrawerContentScrollView>
      )
 }
