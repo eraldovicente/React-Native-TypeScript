@@ -11,6 +11,7 @@ import { StackNavigator } from './StackNavigator';
 import { colores } from '../theme/appTheme';
 import { Platform, Text } from 'react-native';
 import { TopTabNavigator } from './TopTabNavigator';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const Tabs = () => {
 
@@ -35,19 +36,19 @@ const TabsAndroid = () => {
                let iconName: string = '';
                switch( route.name ) {
                     case 'Tab1Screen':
-                         iconName = 'T1'
+                         iconName = 'leaf-outline'
                     break;
 
                     case 'Tab2Screen':
-                         iconName = 'T2'
+                         iconName = 'leaf-outline'
                     break;
 
                     case 'StackNavigator':
-                         iconName = 'St'
+                         iconName = 'leaf-outline'
                     break;
                }
 
-               return <Text style={{ color }}>{ iconName }</Text>
+               return <Icon name={ iconName } size={20} color={ color } />
           }
      })}
     >
@@ -83,19 +84,19 @@ const TabsIOS = () => {
                let iconName: string = '';
                switch( route.name ) {
                     case 'Tab1Screen':
-                         iconName = 'T1'
+                         iconName = 'leaf-outline'
                     break;
 
                     case 'Tab2Screen':
-                         iconName = 'T2'
+                         iconName = 'leaf-outline'
                     break;
 
                     case 'StackNavigator':
-                         iconName = 'St'
+                         iconName = 'leaf-outline'
                     break;
                }
 
-               return <Text style={{ color }}>{ iconName }</Text>
+               return <Icon name={ iconName } size={20} color={ color } />
           }
      })}
     >
