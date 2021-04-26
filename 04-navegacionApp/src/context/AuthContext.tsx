@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
 // Definir cómo luce, qué información tendré aqui
 export interface AuthState {
