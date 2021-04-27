@@ -74,8 +74,8 @@ const MenuInterno = ( { navigation }: DrawerContentComponentProps<DrawerContentO
                          }}
                          onPress={ () => navigation.navigate('SettingsScreen')}
                     >
-                         <Text style={ styles.menuTexto }> Navegacion</Text>
-                         <Text style={ styles.menuTexto }>Ajustes</Text>
+                         <Icon name='leaf-outline' size={20} color='black' />
+                         <Text style={ styles.menuTexto }> Ajustes</Text>
                     </TouchableOpacity>
 
                </View>          
