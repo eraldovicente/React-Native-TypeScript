@@ -1,9 +1,19 @@
 import { AuthState } from "./AuthContext";
 
+type AuthAction = { type: 'signIn' }
 
+// generaEstado
+export const authReducer = ( state: AuthState, action: AuthAction ): AuthState => {
 
-
-export const authReducer = ( state: AuthState, action: any ): AuthState => {
-
-     return state;
+    switch ( action.type ) {
+         case 'signIn':
+              return {
+                   ...state,
+                   isLoggedIn: true,
+                   username: 'no-username-yet'
+              }
+    
+         default:
+              return state;
+    }
 }
