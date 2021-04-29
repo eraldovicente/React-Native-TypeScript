@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 
 export const ContactsScreen = () => {
 
-     const { signIn, authState: { isLoggedIn } } = useContext( AuthContext )
+     const { signIn, authState: { isLoggedIn } } = useContext( AuthContext );
 
      return (
           <View style={ styles.globalMargin }>
