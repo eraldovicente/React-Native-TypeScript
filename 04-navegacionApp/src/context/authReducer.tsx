@@ -34,7 +34,7 @@ export const authReducer = ( state: AuthState, action: AuthAction ): AuthState =
           case 'changeUsername':
                return {
                     ...state,
-                    favoriteIcon: action.payload
+                    username: action.payload
                }
 
     
