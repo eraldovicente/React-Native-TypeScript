@@ -22,6 +22,7 @@ export interface AuthContextProps {
      signIn: () => void;
      logout: () => void;
      changeFavoriteIcon: (iconName: string) => void;
+     changeUsername: (username: string) => void;
 }
 
 // Crear el contexto
@@ -35,14 +36,19 @@ export const AuthProvider = ({ children }: any ) => {
      const signIn = () => {
           dispatch({ type: 'signIn' });
      }
+     
+     const logout = () => {
+          dispatch({ type: 'logout' });
+     }
 
      const changeFavoriteIcon = ( iconName: string ) => {
           dispatch({ type: 'chageFavIcon', payload: iconName });
      }
 
-     const logout = () => {
-          dispatch({ type: 'logout' });
-     }
+     const changeUsername = ( username: string ) => {
+          dispatch({ type: 'changeUsername', payload: username })
+     } 
+
 
      return (
           <AuthContext.Provider value={{
@@ -50,6 +56,7 @@ export const AuthProvider = ({ children }: any ) => {
                signIn,
                logout,
                changeFavoriteIcon,
+               changeUsername
           }}>
                { children }
           </AuthContext.Provider>

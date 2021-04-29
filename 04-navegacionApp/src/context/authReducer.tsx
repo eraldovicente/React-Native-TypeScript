@@ -3,7 +3,8 @@ import { AuthState } from "./AuthContext";
 type AuthAction = 
      | { type: 'signIn' }
      | { type: 'logout' }
-     | { type: 'chageFavIcon', payload: string };
+     | { type: 'chageFavIcon', payload: string }
+     | { type: 'changeUsername', payload: string };
 
 // generaEstado
 export const authReducer = ( state: AuthState, action: AuthAction ): AuthState => {
@@ -23,8 +24,14 @@ export const authReducer = ( state: AuthState, action: AuthAction ): AuthState =
                     username: undefined,
                     favoriteIcon: undefined
                }
-               
+
           case 'chageFavIcon':
+               return {
+                    ...state,
+                    favoriteIcon: action.payload
+               }
+
+          case 'changeUsername':
                return {
                     ...state,
                     favoriteIcon: action.payload
