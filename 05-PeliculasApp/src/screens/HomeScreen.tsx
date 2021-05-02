@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Dimensions, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, FlatList, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import { MoviePoster } from '../components/MoviePoster';
@@ -21,19 +21,34 @@ export const HomeScreen = () => {
      }
 
      return (
-          <View style={{ marginTop: top + 20 }}>
 
-               <View style={{
-                    height: 340
-               }}>
-                    <Carousel
-                         data={ peliculasEnCine }
-                         renderItem={ ({ item }: any) => <MoviePoster movie={ item } /> }
-                         sliderWidth={ windowWidth }
-                         itemWidth={ 230 }
-                    />
+          <ScrollView>
+               <View style={{ marginTop: top + 20 }}>
+
+                    {/* Carosel Principal */}
+                    <View style={{ height: 340 }}>
+                         <Carousel
+                              data={ peliculasEnCine }
+                              renderItem={ ({ item }: any) => <MoviePoster movie={ item } /> }
+                              sliderWidth={ windowWidth }
+                              itemWidth={ 230 }
+                         />
+                    </View>
+
+                    {/* Películas  populares */}
+                    <View style={{ height: 190 }}>
+                         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>En cine</Text>
+                         <FlatList
+                              data={ peliculasEnCine }
+                              renderItem={ ({ item }: any) => (
+                                   <MoviePoster movie={ item } width={ 120 } height={ 150 } />
+                              )}
+                              keyExtractor={ (item) => item.id.toString() }
+                              horizontal={ true }
+                              showsHorizontalScrollIndicator={ false }
+                         />
+                    </View>
                </View>
-
-          </View>
+          </ScrollView>
      )
 }
