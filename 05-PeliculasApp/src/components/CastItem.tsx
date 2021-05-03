@@ -12,16 +12,20 @@ export const CastItem = ({ actor }: Props) => {
 
      return (
           <View style={ styles.container }>
-               <Image
-                    source={{ uri }}
-                    style={{ width: 50, height: 50, borderRadius: 10, marginTop: 9 }}
-               />
+               {
+                    actor.profile_path && (
+                         <Image
+                              source={{ uri }}
+                              style={{ width: 45, height: 57, borderRadius: 10, marginTop: 4 }}
+                         />
+                    )
+               }               
 
                <View style={ styles.actorInfo }>
-                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>
                          { actor.name }
                     </Text>
-                    <Text style={{ fontSize: 16, opacity: 0.7 }}>
+                    <Text style={{ fontSize: 15, opacity: 0.7 }}>
                          { actor.character }
                     </Text>
                </View>
@@ -31,8 +35,9 @@ export const CastItem = ({ actor }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
+         height: 60,
          flexDirection: 'row',
-         borderRadius: 10,
+         borderRadius: 11,
           shadowColor: "white",
           shadowOffset: {
                width: 0,
@@ -41,9 +46,12 @@ const styles = StyleSheet.create({
           shadowOpacity: 0.24,
           shadowRadius: 7,
 
-          elevation: 9
+          elevation: 4,
+          marginRight: 10,
+          paddingRight: 20
     },
     actorInfo: {
-         marginLeft: 20
+         marginLeft: 20,
+         marginTop: 5
     }
 });
