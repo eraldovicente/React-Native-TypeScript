@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import { Animated, Button, View } from 'react-native'
-import { useFade } from '../hooks/useFade'
+// import { useFade } from '../hooks/useFade'
 
 export const FadeScreen = () => {
 
-     const { opacity, fadeIn, fadeOut } = useFade();
+     // const { opacity, fadeIn, fadeOut } = useFade();
 
      return (
           <View style={{ 
@@ -14,7 +14,7 @@ export const FadeScreen = () => {
                alignItems: 'center'
           }}>
 
-               <Animated.View 
+               {/* <Animated.View 
                     style={{
                          backgroundColor: '#084F6A',
                          width: 150,
@@ -34,7 +34,7 @@ export const FadeScreen = () => {
                <Button
                     title="FadeOut"
                     onPress={ fadeOut }
-               />
+               /> */}
 
           </View>
      )
