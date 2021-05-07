@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 
@@ -19,37 +19,47 @@ export const TextInputScreen = () => {
      }
 
      return (
-          <View style={ styles.globalMargin }>
-               <HeaderTitle title="TextInputs" />
+          <KeyboardAvoidingView
+               behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+               <ScrollView>
+                    <TouchableWithoutFeedback onPress={ Keyboard.dismiss }>
+                         <View style={ styles.globalMargin }>
+                              <HeaderTitle title="TextInputs" />
 
-               <TextInput
-                    style={ stylesScreen.inputStyle }
-                    placeholder="Ingrese su nombre"
-                    autoCorrect={ false }
-                    autoCapitalize="words"
-                    onChangeText={ ( value ) => onChange( value, 'name') }
-               />
+                              <TextInput
+                                   style={ stylesScreen.inputStyle }
+                                   placeholder="Ingrese su nombre"
+                                   autoCorrect={ false }
+                                   autoCapitalize="words"
+                                   onChangeText={ ( value ) => onChange( value, 'name') }
+                              />
 
-               <TextInput
-                    style={ stylesScreen.inputStyle }
-                    placeholder="Ingrese su email"
-                    autoCorrect={ false }
-                    autoCapitalize="none"
-                    onChangeText={ ( value ) => onChange( value, 'email') }
-                    keyboardType="email-address"
-                    keyboardAppearance="dark"
-               />
+                              <TextInput
+                                   style={ stylesScreen.inputStyle }
+                                   placeholder="Ingrese su email"
+                                   autoCorrect={ false }
+                                   autoCapitalize="none"
+                                   onChangeText={ ( value ) => onChange( value, 'email') }
+                                   keyboardType="email-address"
+                                   keyboardAppearance="dark"
+                              />
+                              
+                              <TextInput
+                                   style={ stylesScreen.inputStyle }
+                                   placeholder="Ingrese su teléfono"
+                                   onChangeText={ ( value ) => onChange( value, 'phone') }
+                                   keyboardType="phone-pad"
+                              />
 
-               <TextInput
-                    style={ stylesScreen.inputStyle }
-                    placeholder="Ingrese su teléfono"
-                    onChangeText={ ( value ) => onChange( value, 'phone') }
-                    keyboardType="phone-pad"
-               />
+                              <HeaderTitle title={ JSON.stringify( form, null, 3 ) } />
 
-               <HeaderTitle title={ JSON.stringify( form, null, 3 ) } />
+                              <View style={{ height: 100 }} />
 
-          </View>
+                         </View>
+                    </TouchableWithoutFeedback>
+               </ScrollView>
+          </KeyboardAvoidingView>
      )
 }
 
@@ -60,6 +70,6 @@ const stylesScreen = StyleSheet.create({
           height: 50,
           paddingHorizontal: 10,
           borderRadius: 10,
-          marginVertical: 10
+          marginVertical: 5
      }
 });
