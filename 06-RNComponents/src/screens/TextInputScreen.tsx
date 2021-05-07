@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, TextInput, View, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
+import { CustomSwitch } from '../components/CustomSwitch';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { useForm } from '../hooks/useForm';
 import { styles } from '../theme/appTheme';
 
 export const TextInputScreen = () => {
 
-     const [form, setForm] = useState({
+     const { form, onChange, isSubscribed } = useForm({
           name: '',
           email: '',
-          phone: ''
+          phone: '',
+          isSubscribed: false
      });
-
-     const onChange = ( value: string, field: string ) => {
-          setForm({
-               ...form,
-               [field]: value
-          })
-     }
 
      return (
           <KeyboardAvoidingView
@@ -44,7 +40,7 @@ export const TextInputScreen = () => {
                                    keyboardType="email-address"
                                    keyboardAppearance="dark"
                               />
-                              
+
                               <TextInput
                                    style={ stylesScreen.inputStyle }
                                    placeholder="Ingrese su teléfono"
@@ -52,7 +48,12 @@ export const TextInputScreen = () => {
                                    keyboardType="phone-pad"
                               />
 
-                              <HeaderTitle title={ JSON.stringify( form, null, 3 ) } />
+                              <View style={ stylesScreen.switchRow }>
+                                   <Text style={ stylesScreen.switchText }>Suscribirse: </Text>
+                                   <CustomSwitch isOn={ isSubscribed } onChange={ ( value ) => onChange( value, 'isSubscribed' )} />
+                              </View>
+
+                              <Text>{ JSON.stringify( form, null, 3 ) }</Text>
 
                               <View style={{ height: 100 }} />
 
@@ -71,5 +72,15 @@ const stylesScreen = StyleSheet.create({
           paddingHorizontal: 10,
           borderRadius: 10,
           marginVertical: 5
+     },
+     switchRow: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginVertical: 10
+     },
+     switchText: {
+          fontSize: 20,
+          marginBottom: 1
      }
 });
