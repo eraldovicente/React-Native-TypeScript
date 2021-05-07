@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../src/screens/HomeScreen';
-import { Animation101Screen } from '../src/components/Animation101Screen';
-import { Animation102Screen } from '../src/components/Animation102Screen';
+import { Animation101Screen } from '../src/screens/Animation101Screen';
+import { Animation102Screen } from '../src/screens/Animation102Screen';
 import { SwitchScreen } from '../src/screens/SwitchScreen';
 
 const Stack = createStackNavigator();
