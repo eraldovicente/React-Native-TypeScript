@@ -1,16 +1,16 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from '../src/screens/HomeScreen';
-import { Animation101Screen } from '../src/screens/Animation101Screen';
-import { Animation102Screen } from '../src/screens/Animation102Screen';
-import { SwitchScreen } from '../src/screens/SwitchScreen';
-import { AlertScreen } from '../src/screens/AlertScreen';
-import { TextInputScreen } from '../src/screens/TextInputScreen';
-import { PullToRefreshScreen } from '../src/screens/PullToRefreshScreen';
-import { CustomSectionListScreen } from '../src/screens/CustomSectionListScreen';
-import { ModalScreen } from '../src/screens/ModalScreen';
-import { InfiniteScrollScreen } from '../src/screens/InfiniteScrollScreen';
-import { SlidesScreen } from '../src/screens/SlidesScreen';
+import { HomeScreen } from '../screens/HomeScreen';
+import { Animation101Screen } from '../screens/Animation101Screen';
+import { Animation102Screen } from '../screens/Animation102Screen';
+import { SwitchScreen } from '../screens/SwitchScreen';
+import { AlertScreen } from '../screens/AlertScreen';
+import { TextInputScreen } from '../screens/TextInputScreen';
+import { PullToRefreshScreen } from '../screens/PullToRefreshScreen';
+import { CustomSectionListScreen } from '../screens/CustomSectionListScreen';
+import { ModalScreen } from '../screens/ModalScreen';
+import { InfiniteScrollScreen } from '../screens/InfiniteScrollScreen';
+import { SlidesScreen } from '../screens/SlidesScreen';
 
 const Stack = createStackNavigator();
 
