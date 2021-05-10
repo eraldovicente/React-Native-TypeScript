@@ -69,7 +69,7 @@ export const SlidesScreen = ({ navigation }: Props) => {
                          { item.title }
                     </Text>
                     <Text style={{ 
-                         ...styles.title,
+                         ...styles.subTitle,
                          color: colors.text
                     }}>
                          { item.desc }
@@ -165,6 +165,6 @@ const styles = StyleSheet.create({
           color: '#5856D6'
      },
      subTitle: {
-          fontSize: 16
+          fontSize: 17
      }
 });
