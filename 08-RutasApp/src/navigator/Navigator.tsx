@@ -16,8 +16,8 @@ export const Navigator = () => {
                }
           }}
     >
+      <Stack.Screen name="PermissionScreen" component={ PermissionsScreen } />
       <Stack.Screen name="MapScreen" component={ MapScreen } />
-      <Stack.Screen name="PermissionsScreen" component={ PermissionsScreen } />
     </Stack.Navigator>
   );
 }
