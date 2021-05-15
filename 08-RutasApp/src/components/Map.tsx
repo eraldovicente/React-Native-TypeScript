@@ -11,6 +11,8 @@ export const Map = ({ markers }: Props) => {
           <>
                <MapView
                     style={{ flex: 1 }}
+                    // provider={ PROVIDER_GOOGLE }
+                    showsUserLocation
                     initialRegion={{
                          latitude: 37.78825,
                          longitude: -122.4324,
