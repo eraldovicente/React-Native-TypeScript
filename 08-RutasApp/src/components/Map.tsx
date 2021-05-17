@@ -10,9 +10,28 @@ interface Props {
 
 export const Map = ({ markers }: Props) => {
 
-     const { hasLocation, initialPosition, getCurrentLocation  } = useLocation();
+     const { 
+          hasLocation, 
+          initialPosition, 
+          getCurrentLocation, 
+          followUserLocation,
+          userLocation } = useLocation();
 
      const mapViewRef = useRef<MapView>();
+
+     useEffect(() => {
+          followUserLocation();
+          return () => {
+
+          }        
+     }, []);
+
+     useEffect(() => {
+        const { latitude, longitude } = userLocation;
+        mapViewRef.current?.animateCamera({
+             center: { latitude, longitude }
+        });
+     }, [ userLocation ]);
 
      const centerPosition = async() => {
 
@@ -20,7 +39,7 @@ export const Map = ({ markers }: Props) => {
 
           mapViewRef.current?.animateCamera({
                center: { latitude, longitude }
-          })
+          });
      }
 
      if ( !hasLocation ) {

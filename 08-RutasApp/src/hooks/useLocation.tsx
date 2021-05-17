@@ -10,12 +10,18 @@ export const useLocation = () => {
           latitude: 0,
           longitude: 0
      });
+
+     const [ userLocation, setUserLocation ] = useState<Location>({
+          latitude: 0,
+          longitude: 0
+     });
      
      useEffect(() => {
 
           getCurrentLocation()
                .then( location => {
                     setInitialPosition(location);
+                    setUserLocation(location);
                     setHasLocation(true);
                }); 
      }, []);
@@ -24,7 +30,7 @@ export const useLocation = () => {
           return new Promise( (resolve, reject) => {
                Geolocation.getCurrentPosition(
                     ({ coords }) => {
-     
+                         
                          resolve({
                               latitude: coords.latitude, 
                               longitude: coords.longitude
@@ -32,14 +38,31 @@ export const useLocation = () => {
 
                     },
                     (err) => reject({ err }), 
-                    { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 }               
+                    { enableHighAccuracy: true }               
+                    // { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 }               
                );
           });
+     }
+
+     const followUserLocation = () => {
+          Geolocation.watchPosition(
+               ({ coords }) => {
+                    console.log({coords});                    
+                    setUserLocation({
+                         latitude: coords.latitude,
+                         longitude: coords.longitude
+                    });
+
+               },
+               (err) => console.log(err), { enableHighAccuracy: true, distanceFilter: 10 }
+          )
      }
 
      return {
           hasLocation,
           initialPosition,
-          getCurrentLocation
+          getCurrentLocation,
+          followUserLocation,
+          userLocation
      }
 }
