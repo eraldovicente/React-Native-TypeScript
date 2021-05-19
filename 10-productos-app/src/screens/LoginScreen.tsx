@@ -62,7 +62,7 @@ export const LoginScreen = ({ navigation }: Props) => {
                          <TextInput
                               placeholder="*********"
                               placeholderTextColor="rgba(0,0,0,0.5)"
-                              keyboardType="email-address"
+                              keyboardType="default"
                               underlineColorAndroid="black"
                               secureTextEntry
                               style={[ 
@@ -96,7 +96,7 @@ export const LoginScreen = ({ navigation }: Props) => {
                                    activeOpacity={ 0.8 }
                                    onPress={ () => navigation.replace('RegisterScreen') }
                               >
-                                   <Text style={ loginStyles.buttonText }>Nueva cuenta </Text>
+                                   <Text style={ loginStyles.buttonText }>Nueva cuenta</Text>
                               </TouchableOpacity>
                          </View>
                     </View>
