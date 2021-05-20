@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 export const ProtectedScreen = () => {
      return (
           <View>
-              <Text>tectedScreen</Text> 
+              <Text>ProtectedScreen</Text> 
           </View>
      )
 }

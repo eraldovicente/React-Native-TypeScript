@@ -1,3 +1,4 @@
+import { resolvePreset } from "@babel/core";
 import React, { createContext, useReducer } from "react";
 import cafeApi from "../api/cafeApi";
 import { LoginData, LoginResponse, Usuario } from "../interfaces/appInterfaces";
@@ -33,11 +34,17 @@ export const AuthProvider = ({ children }: any) => {
 
           try {
 
-               const resp = await cafeApi.post<LoginResponse>('/auth/login', { correo, password } );
-               console.log(resp.data);               
+               const { data } = await cafeApi.post<LoginResponse>('/auth/login', { correo, password } );
+               dispatch({
+                    type: 'signUp',
+                    payload: {
+                         token: data.token,
+                         user: data.usuario
+                    }
+               });               
 
           } catch (error) {
-               console.log( error.response.data );
+               console.log( error.response.data.msg );
           }
      };
 
