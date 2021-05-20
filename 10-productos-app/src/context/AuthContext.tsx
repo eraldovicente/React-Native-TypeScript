@@ -1,6 +1,8 @@
-import { resolvePreset } from "@babel/core";
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import cafeApi from "../api/cafeApi";
+
 import { LoginData, LoginResponse, Usuario } from "../interfaces/appInterfaces";
 import { authReducer, AuthState } from "./authReducer";
 
@@ -28,6 +30,19 @@ export const AuthProvider = ({ children }: any) => {
 
      const [ state, dispatch ] = useReducer( authReducer, authInicialState );
 
+     useEffect(() => {
+          checkToken();
+     }, []);
+
+     const checkToken = async() => {
+          const token = await AsyncStorage.getItem('token');
+
+          // No token, no autenticado
+          if ( !token ) return dispatch({ type: 'notAuthenticated' });
+
+          // Hay token
+     }
+
      const signUp = () => {};
 
      const signIn = async({ correo, password }: LoginData) => {
@@ -41,7 +56,9 @@ export const AuthProvider = ({ children }: any) => {
                          token: data.token,
                          user: data.usuario
                     }
-               });               
+               });        
+               
+               await AsyncStorage.setItem( 'token', data.token );
 
           } catch (error) {
                console.log( error.response.data.msg );
