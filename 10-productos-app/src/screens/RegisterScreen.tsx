@@ -1,13 +1,17 @@
-import React from 'react';
-import { TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, View } from 'react-native';
-import { WhiteLogo } from '../components/WhiteLogo';
+import React, { useContext, useEffect } from 'react';
+import { TouchableOpacity, Keyboard, KeyboardAvoidingView, Platform, Text, TextInput, View, Alert } from 'react-native';
+
+import { AuthContext } from '../context/AuthContext';
 import { loginStyles } from '../theme/loginTheme';
-import { useForm } from '../hooks/useForm';
+
 import { StackScreenProps } from '@react-navigation/stack';
+import { useForm } from '../hooks/useForm';
 
 interface Props extends StackScreenProps<any, any> {}
 
 export const RegisterScreen = ( { navigation }: Props ) => {
+
+     const { signUp, errorMessage, removeError } = useContext( AuthContext );
 
      const { email, password, name, onChange } = useForm({
           name: '',
@@ -15,9 +19,25 @@ export const RegisterScreen = ( { navigation }: Props ) => {
           password: ''
      });
 
+     useEffect(() => {
+          
+          if ( errorMessage.length === 0 ) return;
+
+               Alert.alert('Registro incorrecto', errorMessage, [{
+                    text: 'Ok',
+                    onPress: removeError
+               }]);
+
+     }, [ errorMessage ]);
+
      const onRegister = () => {
           console.log({ email, password, name });
           Keyboard.dismiss();
+          signUp({
+               nombre: name,
+               correo: email,
+               password
+          });
           
      }
 
@@ -37,7 +57,7 @@ export const RegisterScreen = ( { navigation }: Props ) => {
                          <TextInput
                               placeholder="Ingrese su nombre"
                               placeholderTextColor="rgba(0,0,0,0.5)"
-                              keyboardType="email-address"
+                              keyboardType="default"
                               underlineColorAndroid="black"
                               style={[ 
                                    loginStyles.inputField,
@@ -49,6 +69,7 @@ export const RegisterScreen = ( { navigation }: Props ) => {
                               value={ name }
                               onSubmitEditing={ onRegister }
 
+                              // autoCapitalize="none"
                               autoCorrect={ false }
                          />
 
