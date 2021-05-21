@@ -1,9 +1,10 @@
-import React, { createContext, useState } from 'react';
-import { Producto } from '../interfaces/appInterfaces';
+import React, { createContext, useEffect, useState } from 'react';
+import cafeApi from '../api/cafeApi';
+import { Producto, ProductsResponse } from '../interfaces/appInterfaces';
 
 type ProductsContextProps = {
      products: Producto[];
-     loadProduct: () => Promise<void>;
+     loadProducts: () => Promise<void>;
      addProduct: ( categoryId: string, productName: string ) => Promise<void>;
      updateProduct: ( categoryId: string, productName: string, productId: string ) => Promise<void>;
      deleteProduct: ( id: string ) => Promise<void>;
@@ -17,9 +18,18 @@ export const ProductsProvider = ({ children }: any ) => {
 
      const [products, setProducts] = useState<Producto[]>([]);
 
-     const loadProduct = async() => {
+     useEffect(() => {
+          loadProducts();
+     }, []);
+
+     const loadProducts = async() => {
+
+          const resp = await cafeApi.get<ProductsResponse>('/productos?limite=50');
+          // setProducts([ ...products, ...resp.data.productos ]);         
+          setProducts([ ...resp.data.productos ]);         
 
      }
+
      const addProduct = async( categoryId: string, productName: string ) => {
 
      }
@@ -44,7 +54,7 @@ export const ProductsProvider = ({ children }: any ) => {
      return (
           <ProductsContext.Provider value={{
                products,
-               loadProduct,
+               loadProducts,
                addProduct,
                updateProduct,
                deleteProduct,
