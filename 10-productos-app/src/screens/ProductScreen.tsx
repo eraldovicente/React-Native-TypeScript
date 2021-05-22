@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { Button, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import {Picker} from '@react-native-picker/picker';
 
@@ -26,8 +26,6 @@ export const ProductScreen = ({ navigation, route }: Props) => {
           img: ''
      });
 
-     const [selectedLanguage, setSelectedLanguage] = useState();
-
      useEffect(() => {
           navigation.setOptions({
                title: ( name ) && name 
@@ -53,7 +51,9 @@ export const ProductScreen = ({ navigation, route }: Props) => {
      return (
           <View style={ styles.container }>
 
-               <ScrollView>
+               <ScrollView
+                    showsVerticalScrollIndicator={ false }
+               >
 
                     <Text style={ styles.label }>Nombre del producto:</Text>
                     <TextInput
@@ -66,10 +66,8 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                     {/* Picker / Selector */}
                     <Text style={ styles.label }>Categoria:</Text>
                     <Picker
-                         selectedValue={selectedLanguage}
-                         onValueChange={(itemValue, itemIndex) =>
-                              setSelectedLanguage(itemValue)
-                         }
+                         selectedValue={ categoriaId }
+                         onValueChange={ ( value ) => onChange( value, 'categoriaId' ) }
                     >
                          {
                               categories.map( c => (
@@ -110,9 +108,20 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                          />
                     </View>
 
-                    <Text>
-                         { JSON.stringify( form, null, 5 ) }
-                    </Text>
+                    {
+                         (img.length > 0) && (
+                              <Image
+                                   source={{ uri: img }}
+                                   style={{
+                                        marginTop: 20,
+                                        width: '100%',
+                                        height: 300
+                                   }}
+                              />
+                         )
+                    }
+
+                    {/* TODO: Mostrar imagen temporal */}
 
                </ScrollView>
 
