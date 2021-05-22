@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { StackScreenProps } from '@react-navigation/stack';
@@ -11,6 +11,24 @@ interface Props extends StackScreenProps<ProductsStackParams, 'ProductsScreen'>{
 export const ProductsScreen = ( { navigation }: Props ) => {
 
      const { products, loadProducts } = useContext( ProductsContext );
+
+     useEffect(() => {
+
+          navigation.setOptions({
+               headerRight: () => (
+                    <TouchableOpacity
+                         activeOpacity={ 0.8 }
+                         style={{ marginRight: 20 }}
+                         onPress={ () => navigation.navigate('ProductScreen', {
+                              name: "Nuevo Producto"
+                         }) }
+                    >
+                         <Text>Agregar</Text>
+                    </TouchableOpacity>
+               )
+          })
+          
+     }, []);
 
      // TODO: Pull to refresh
 

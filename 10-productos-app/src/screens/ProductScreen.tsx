@@ -1,10 +1,24 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React, { useEffect } from 'react';
+import { Text, View } from 'react-native';
 
-export const ProductScreen = () => {
+import { StackScreenProps } from '@react-navigation/stack';
+import { ProductsStackParams } from '../navigator/ProductsNavigator';
+
+interface Props extends StackScreenProps<ProductsStackParams, 'ProductScreen'>{};
+
+export const ProductScreen = ({ navigation, route }: Props) => {
+
+     const { id, name = '' } = route.params;
+
+     useEffect(() => {
+          navigation.setOptions({
+               title: ( name ) && name 
+          });
+     }, []);
+
      return (
           <View>
-               <Text>ProductScreen</Text>
+               <Text>{ id } { name }</Text>
           </View>
      )
 }
