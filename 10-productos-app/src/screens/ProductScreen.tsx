@@ -20,7 +20,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
 
      const { categories } = useCategories();
 
-     const { loadProductById, addProduct, updateProduct } = useContext( ProductsContext );
+     const { loadProductById, addProduct, updateProduct, uploadImage } = useContext( ProductsContext );
 
      const { _id, categoriaId, nombre, img, form, onChange, setFormValue } = useForm({
           _id: id,
@@ -72,6 +72,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                if ( !resp.uri ) return;
 
                setTempUri( resp.uri );
+               uploadImage( resp, _id );
           });
      }
 
