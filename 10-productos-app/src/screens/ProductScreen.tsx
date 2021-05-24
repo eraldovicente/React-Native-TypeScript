@@ -76,6 +76,19 @@ export const ProductScreen = ({ navigation, route }: Props) => {
           });
      }
 
+     const takePhotoFromGallery = () => {
+          launchImageLibrary({
+               mediaType: 'photo',
+               quality: 0.5
+          }, (resp) => {
+               if ( resp.didCancel ) return;
+               if ( !resp.uri ) return;
+
+               setTempUri( resp.uri );
+               uploadImage( resp, _id );
+          }); 
+     }
+
      return (
           <View style={ styles.container }>
 
@@ -134,7 +147,7 @@ export const ProductScreen = ({ navigation, route }: Props) => {
                                    <Button
                                         title="Galería"
                                         // TODO: Por hacer
-                                        onPress={ () => {} }
+                                        onPress={ takePhotoFromGallery }
                                         color="#5856D6"
                                    />
                               </View>
